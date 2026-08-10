@@ -1,0 +1,2096 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #050505;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+/* =========================
+   MOVIE
+========================= */
+
+#movie {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+
+/* =========================
+   SCENES
+========================= */
+
+.scene {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: scale(1.04);
+
+    transition:
+        opacity 1.8s ease,
+        transform 4s ease;
+
+    overflow: hidden;
+}
+
+
+.scene.active {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+
+
+/* =========================
+   FILM GRAIN
+========================= */
+
+.film-grain {
+    position: absolute;
+    inset: -50%;
+
+    pointer-events: none;
+
+    opacity: 0.09;
+
+    background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+
+    animation: grain 0.25s steps(2) infinite;
+}
+
+
+@keyframes grain {
+
+    0% {
+        transform: translate(0, 0);
+    }
+
+    25% {
+        transform: translate(-2%, 2%);
+    }
+
+    50% {
+        transform: translate(2%, -2%);
+    }
+
+    75% {
+        transform: translate(1%, 2%);
+    }
+
+    100% {
+        transform: translate(-2%, -1%);
+    }
+}
+
+
+/* =========================
+   OPENING
+========================= */
+
+.opening {
+    background:
+        radial-gradient(
+            circle at center,
+            #242424 0%,
+            #090909 45%,
+            #000000 100%
+        );
+}
+
+
+.opening-content {
+    position: relative;
+    z-index: 2;
+
+    text-align: center;
+
+    padding: 30px;
+}
+
+
+.small-title {
+    font-size: 10px;
+    letter-spacing: 7px;
+    opacity: 0.55;
+
+    margin-bottom: 25px;
+
+    animation: fadeUp 2s ease forwards;
+}
+
+
+.opening h1 {
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: clamp(55px, 12vw, 150px);
+
+    font-weight: 500;
+
+    letter-spacing: 8px;
+
+    line-height: 0.9;
+
+    animation: titleReveal 3s ease forwards;
+}
+
+
+.opening h1 span {
+    display: inline-block;
+
+    margin: 0 18px;
+
+    opacity: 0.45;
+
+    font-size: 0.45em;
+}
+
+
+.line {
+    width: 100px;
+    height: 1px;
+
+    margin: 35px auto;
+
+    background: rgba(255,255,255,0.5);
+
+    animation: lineReveal 2s ease forwards;
+}
+
+
+.subtitle {
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: clamp(16px, 2vw, 24px);
+
+    font-style: italic;
+
+    opacity: 0.7;
+
+    animation: fadeUp 3s ease forwards;
+}
+
+
+/* =========================
+   PART ONE
+========================= */
+
+.part-one {
+    background: #050505;
+}
+
+
+.background-image {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,0.55),
+            rgba(0,0,0,0.85)
+        ),
+        url("assets/images/photo1.jpg");
+
+    background-size: cover;
+    background-position: center;
+
+    transform: scale(1.08);
+
+    transition: transform 8s ease;
+}
+
+
+.part-one.active .background-image {
+    transform: scale(1);
+}
+
+
+.dark-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            transparent 10%,
+            rgba(0,0,0,0.8) 100%
+        );
+}
+
+
+.part-content {
+    position: relative;
+
+    z-index: 3;
+
+    text-align: center;
+
+    max-width: 800px;
+
+    padding: 30px;
+}
+
+
+.chapter {
+    font-size: 10px;
+
+    letter-spacing: 8px;
+
+    opacity: 0.55;
+
+    margin-bottom: 25px;
+}
+
+
+.part-content h2 {
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: clamp(60px, 10vw, 130px);
+
+    font-weight: 400;
+
+    line-height: 0.85;
+
+    letter-spacing: -2px;
+}
+
+
+.part-content h2 span {
+    font-style: italic;
+}
+
+
+.message {
+    margin-top: 35px;
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 22px;
+
+    font-style: italic;
+
+    opacity: 0.75;
+}
+
+
+/* =========================
+   MEMORY
+========================= */
+
+.memory-one {
+    justify-content: flex-start;
+}
+
+
+.memory-image {
+    position: absolute;
+    inset: 0;
+
+    background-size: cover;
+    background-position: center;
+
+    transform: scale(1.15);
+
+    transition: transform 8s ease;
+}
+
+
+.memory-one.active .memory-image {
+    transform: scale(1);
+}
+
+
+.image-one {
+    background-image:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,0.9),
+            rgba(0,0,0,0.25)
+        ),
+        url("assets/images/photo2.jpg");
+}
+
+
+.memory-caption {
+    position: relative;
+
+    z-index: 3;
+
+    padding-left: 8vw;
+
+    max-width: 650px;
+}
+
+
+.memory-caption p {
+    font-size: 14px;
+
+    letter-spacing: 4px;
+
+    opacity: 0.6;
+
+    margin-bottom: 15px;
+}
+
+
+.memory-caption h2 {
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: clamp(55px, 8vw, 110px);
+
+    font-weight: 400;
+
+    line-height: 0.9;
+}
+
+
+/* =========================
+   PROGRESS
+========================= */
+
+.movie-progress {
+    position: fixed;
+
+    bottom: 35px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 100;
+
+    display: flex;
+    align-items: center;
+
+    opacity: 0.5;
+}
+
+
+.progress-dot {
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    opacity: 0.35;
+
+    transition: 0.5s ease;
+}
+
+
+.progress-dot.active {
+    opacity: 1;
+
+    transform: scale(1.6);
+}
+
+
+.progress-line {
+    width: 35px;
+    height: 1px;
+
+    background: white;
+
+    opacity: 0.2;
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes fadeUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 0.7;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes titleReveal {
+
+    from {
+        opacity: 0;
+        transform: scale(1.1);
+        letter-spacing: 25px;
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+        letter-spacing: 8px;
+    }
+}
+
+
+@keyframes lineReveal {
+
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100px;
+    }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .opening h1 {
+        letter-spacing: 3px;
+    }
+
+    .opening h1 span {
+        margin: 0 8px;
+    }
+
+    .part-content h2 {
+        font-size: 65px;
+    }
+
+    .memory-caption {
+        padding-left: 30px;
+    }
+
+    .movie-progress {
+        bottom: 20px;
+    }
+}/* =========================================
+   PART TWO — THE PEOPLE WHO STAY
+========================================= */
+
+.part-two {
+    background: #050505;
+}
+
+
+.part-two-background {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,0.88),
+            rgba(0,0,0,0.45),
+            rgba(0,0,0,0.9)
+        ),
+        url("assets/images/photo3.jpg");
+
+    background-size: cover;
+    background-position: center;
+
+    transform: scale(1.1);
+
+    filter: saturate(0.7);
+
+    transition:
+        transform 10s ease,
+        filter 5s ease;
+}
+
+
+.part-two.active .part-two-background {
+    transform: scale(1);
+    filter: saturate(1);
+}
+
+
+.part-two-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            transparent 0%,
+            rgba(0,0,0,0.75) 85%
+        );
+}
+
+
+.part-two-content {
+    position: relative;
+
+    z-index: 5;
+
+    text-align: center;
+
+    padding: 30px;
+
+    max-width: 900px;
+}
+
+
+.part-two .chapter {
+    font-size: 10px;
+
+    letter-spacing: 8px;
+
+    opacity: 0.55;
+
+    margin-bottom: 28px;
+}
+
+
+.part-two h2 {
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: clamp(
+        60px,
+        10vw,
+        125px
+    );
+
+    font-weight: 400;
+
+    line-height: 0.82;
+
+    letter-spacing: -2px;
+}
+
+
+.part-two h2 span {
+    font-style: italic;
+
+    opacity: 0.85;
+}
+
+
+.gold-line {
+    width: 70px;
+    height: 1px;
+
+    background: rgba(
+        255,
+        255,
+        255,
+        0.6
+    );
+
+    margin: 35px auto;
+}
+
+
+.part-two-text {
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size: clamp(
+        18px,
+        2.5vw,
+        27px
+    );
+
+    font-style: italic;
+
+    opacity: 0;
+
+    transform: translateY(20px);
+
+    transition:
+        opacity 1.8s ease,
+        transform 1.8s ease;
+}
+
+
+.part-two.active
+.part-two-text {
+    opacity: 0.7;
+
+    transform: translateY(0);
+}
+
+
+.part-two .highlight {
+    margin-top: 15px;
+
+    font-size: clamp(
+        20px,
+        3vw,
+        32px
+    );
+
+    opacity: 0;
+}
+
+
+.part-two.active
+.part-two .highlight {
+    opacity: 0.95;
+
+    transition-delay: 1.5s;
+}
+
+
+/* =========================================
+   VOICE NOTE INDICATOR
+========================================= */
+
+.voice-indicator {
+    position: absolute;
+
+    bottom: 90px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    opacity: 0;
+
+    transition: opacity 1s ease;
+}
+
+
+.voice-indicator.show {
+    opacity: 0.6;
+}
+
+
+.voice-dot {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    animation:
+        voicePulse 1.2s infinite;
+}
+
+
+.voice-text {
+    font-size: 9px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+}
+
+
+@keyframes voicePulse {
+
+    0% {
+        transform: scale(1);
+        opacity: 0.4;
+    }
+
+    50% {
+        transform: scale(1.8);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0.4;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .part-two-content {
+        padding: 25px;
+    }
+
+    .part-two h2 {
+        font-size: 68px;
+    }
+
+    .part-two-text {
+        font-size: 20px;
+    }
+}/* =========================================
+   PART THREE — A PROMISE
+========================================= */
+
+.part-three {
+    background: #030303;
+}
+
+
+.part-three-background {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,0.55),
+            rgba(0,0,0,0.9)
+        ),
+        url("assets/images/photo4.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    transform: scale(1.12);
+
+    filter: grayscale(25%);
+
+    transition:
+        transform 12s ease,
+        filter 5s ease;
+}
+
+
+.part-three.active
+.part-three-background {
+
+    transform: scale(1);
+
+    filter: grayscale(0%);
+}
+
+
+.part-three-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            transparent 0%,
+            rgba(0,0,0,0.85) 90%
+        );
+}
+
+
+.promise-content {
+    position: relative;
+
+    z-index: 5;
+
+    text-align: center;
+
+    width: 90%;
+
+    max-width: 900px;
+}
+
+
+.promise-content .chapter {
+
+    font-size: 10px;
+
+    letter-spacing: 8px;
+
+    opacity: 0.5;
+
+    margin-bottom: 25px;
+}
+
+
+.promise-content h2 {
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size:
+        clamp(
+            70px,
+            12vw,
+            150px
+        );
+
+    font-weight: 400;
+
+    letter-spacing: 2px;
+
+    line-height: 0.9;
+
+    opacity: 0;
+
+    transform:
+        translateY(35px);
+
+    transition:
+        opacity 2s ease,
+        transform 2s ease;
+}
+
+
+.part-three.active
+.promise-content h2 {
+
+    opacity: 1;
+
+    transform:
+        translateY(0);
+}
+
+
+.promise-line {
+
+    width: 0;
+
+    height: 1px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.55
+        );
+
+    margin:
+        30px auto;
+
+    transition:
+        width 2s ease 1s;
+}
+
+
+.part-three.active
+.promise-line {
+
+    width: 80px;
+}
+
+
+.promise-text {
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size:
+        clamp(
+            18px,
+            2.5vw,
+            28px
+        );
+
+    font-style: italic;
+
+    opacity: 0;
+
+    transform:
+        translateY(20px);
+
+    transition:
+        opacity 1.5s ease,
+        transform 1.5s ease;
+}
+
+
+.part-three.active
+.text-one {
+
+    opacity: 0.7;
+
+    transform:
+        translateY(0);
+
+    transition-delay: 2s;
+}
+
+
+.part-three.active
+.text-two {
+
+    opacity: 0.7;
+
+    transform:
+        translateY(0);
+
+    transition-delay: 3.5s;
+}
+
+
+.promise-final {
+
+    margin-top: 35px;
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size:
+        clamp(
+            25px,
+            4vw,
+            45px
+        );
+
+    font-weight: 500;
+
+    opacity: 0;
+
+    transform:
+        scale(0.94);
+
+    transition:
+        opacity 2s ease,
+        transform 2s ease;
+}
+
+
+.part-three.active
+.promise-final {
+
+    opacity: 1;
+
+    transform:
+        scale(1);
+
+    transition-delay: 5s;
+}
+
+
+.promise-symbol {
+
+    margin-top: 25px;
+
+    font-size: 25px;
+
+    opacity: 0;
+
+    transform:
+        translateY(10px);
+
+    transition:
+        opacity 1.5s ease,
+        transform 1.5s ease;
+
+}
+
+
+.part-three.active
+.promise-symbol {
+
+    opacity: 0.8;
+
+    transform:
+        translateY(0);
+
+    transition-delay: 6.5s;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .promise-content {
+
+        width: 92%;
+
+    }
+
+
+    .promise-content h2 {
+
+        font-size: 75px;
+
+    }
+
+
+    .promise-text {
+
+        font-size: 21px;
+
+    }
+
+
+    .promise-final {
+
+        font-size: 32px;
+
+    }
+
+}/* =========================================
+   PART 5 — BIRTHDAY REVEAL
+========================================= */
+
+.birthday-scene {
+
+    background: #020202;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   BACKGROUND
+========================================= */
+
+.birthday-background {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,0.45),
+            rgba(0,0,0,0.92)
+        ),
+        url("assets/images/photo5.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    transform: scale(1.15);
+
+    filter: brightness(0.55);
+
+    transition:
+        transform 12s ease,
+        filter 6s ease;
+}
+
+
+.birthday-scene.active
+.birthday-background {
+
+    transform: scale(1);
+
+    filter: brightness(0.75);
+
+}
+
+
+/* =========================================
+   GOLDEN CINEMATIC GLOW
+========================================= */
+
+.birthday-glow {
+
+    position: absolute;
+
+    width: 700px;
+
+    height: 700px;
+
+    left: 50%;
+
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,0.10),
+            transparent 70%
+        );
+
+    filter: blur(30px);
+
+    opacity: 0;
+
+    transition:
+        opacity 4s ease;
+}
+
+
+.birthday-scene.active
+.birthday-glow {
+
+    opacity: 1;
+
+}
+
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.birthday-content {
+
+    position: relative;
+
+    z-index: 5;
+
+    text-align: center;
+
+    width: 90%;
+
+    max-width: 1000px;
+
+}
+
+
+/* =========================================
+   DATE
+========================================= */
+
+.birthday-date {
+
+    font-size: 10px;
+
+    letter-spacing: 8px;
+
+    opacity: 0;
+
+    transform:
+        translateY(20px);
+
+    transition:
+        opacity 2s ease,
+        transform 2s ease;
+
+}
+
+
+.birthday-scene.active
+.birthday-date {
+
+    opacity: 0.6;
+
+    transform:
+        translateY(0);
+
+}
+
+
+/* =========================================
+   LINE
+========================================= */
+
+.birthday-line {
+
+    width: 0;
+
+    height: 1px;
+
+    background:
+        rgba(255,255,255,0.55);
+
+    margin: 28px auto;
+
+    transition:
+        width 2s ease 1s;
+}
+
+
+.birthday-scene.active
+.birthday-line {
+
+    width: 100px;
+
+}
+
+
+/* =========================================
+   SMALL TITLE
+========================================= */
+
+.birthday-small {
+
+    font-size: 9px;
+
+    letter-spacing: 6px;
+
+    opacity: 0;
+
+    transition:
+        opacity 2s ease;
+
+}
+
+
+.birthday-scene.active
+.birthday-small {
+
+    opacity: 0.55;
+
+    transition-delay: 2s;
+
+}
+
+
+/* =========================================
+   MAIN TITLE
+========================================= */
+
+.birthday-title {
+
+    margin-top: 25px;
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size:
+        clamp(
+            60px,
+            11vw,
+            145px
+        );
+
+    font-weight: 400;
+
+    line-height: 0.78;
+
+    letter-spacing: 3px;
+
+    opacity: 0;
+
+    transform:
+        scale(0.88);
+
+    transition:
+        opacity 2.5s ease,
+        transform 2.5s ease;
+
+}
+
+
+.birthday-title span {
+
+    display: block;
+
+    font-style: italic;
+
+    opacity: 0.85;
+
+}
+
+
+.birthday-scene.active
+.birthday-title {
+
+    opacity: 1;
+
+    transform:
+        scale(1);
+
+    transition-delay: 2.5s;
+
+}
+
+
+/* =========================================
+   MILAN
+========================================= */
+
+.birthday-name {
+
+    margin-top: 35px;
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size:
+        clamp(
+            40px,
+            7vw,
+            85px
+        );
+
+    font-weight: 500;
+
+    letter-spacing: 12px;
+
+    opacity: 0;
+
+    transform:
+        translateY(25px);
+
+    transition:
+        opacity 2s ease,
+        transform 2s ease;
+
+}
+
+
+.birthday-scene.active
+.birthday-name {
+
+    opacity: 1;
+
+    transform:
+        translateY(0);
+
+    transition-delay: 4.5s;
+
+}
+
+
+/* =========================================
+   MESSAGE
+========================================= */
+
+.birthday-message {
+
+    margin-top: 30px;
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size:
+        clamp(
+            17px,
+            2.2vw,
+            25px
+        );
+
+    font-style: italic;
+
+    line-height: 1.4;
+
+    opacity: 0;
+
+    transition:
+        opacity 2s ease;
+
+}
+
+
+.birthday-scene.active
+.birthday-message {
+
+    opacity: 0.7;
+
+    transition-delay: 6s;
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .birthday-title {
+
+        font-size: 68px;
+
+        letter-spacing: 1px;
+
+    }
+
+
+    .birthday-name {
+
+        font-size: 48px;
+
+        letter-spacing: 7px;
+
+    }
+
+
+    .birthday-date {
+
+        letter-spacing: 5px;
+
+    }
+
+}/* =========================================
+   PART 6 — THE LETTER
+========================================= */
+
+.letter-scene {
+
+    background: #020202;
+
+    overflow-y: hidden;
+
+    align-items: flex-start;
+
+    justify-content: center;
+
+}
+
+
+/* =========================================
+   BACKGROUND
+========================================= */
+
+.letter-background {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,0.82),
+            rgba(0,0,0,0.95)
+        ),
+        url("assets/images/photo6.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    filter:
+        grayscale(30%)
+        brightness(0.6);
+
+    transform: scale(1.08);
+
+    transition:
+        transform 15s ease;
+
+}
+
+
+.letter-scene.active
+.letter-background {
+
+    transform: scale(1);
+
+}
+
+
+/* =========================================
+   OVERLAY
+========================================= */
+
+.letter-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            transparent,
+            rgba(0,0,0,0.7)
+        );
+
+}
+
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.letter-content {
+
+    position: relative;
+
+    z-index: 5;
+
+    width: min(
+        850px,
+        88%
+    );
+
+    padding:
+        100px 0 120px;
+
+    text-align: center;
+
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.letter-label {
+
+    font-size: 10px;
+
+    letter-spacing: 7px;
+
+    opacity: 0;
+
+    transform:
+        translateY(20px);
+
+    transition:
+        opacity 2s ease,
+        transform 2s ease;
+
+}
+
+
+.letter-scene.active
+.letter-label {
+
+    opacity: 0.55;
+
+    transform:
+        translateY(0);
+
+}
+
+
+.letter-line {
+
+    width: 0;
+
+    height: 1px;
+
+    background:
+        rgba(255,255,255,0.5);
+
+    margin:
+        25px auto 60px;
+
+    transition:
+        width 2s ease 1s;
+
+}
+
+
+.letter-scene.active
+.letter-line {
+
+    width: 80px;
+
+}
+
+
+/* =========================================
+   LETTER TEXT
+========================================= */
+
+.letter-text {
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size:
+        clamp(
+            20px,
+            2.5vw,
+            28px
+        );
+
+    line-height: 1.65;
+
+}
+
+
+.letter-text p {
+
+    margin:
+        0 auto 75px;
+
+    max-width: 760px;
+
+    opacity: 0;
+
+    transform:
+        translateY(30px);
+
+    transition:
+        opacity 1.8s ease,
+        transform 1.8s ease;
+
+}
+
+
+/*
+   Paragraphs reveal one
+   after another.
+*/
+
+.letter-scene.active
+.letter-text p {
+
+    opacity: 0.78;
+
+    transform:
+        translateY(0);
+
+}
+
+
+.letter-text p.important {
+
+    font-size:
+        clamp(
+            24px,
+            3.5vw,
+            38px
+        );
+
+    opacity: 0;
+
+}
+
+
+.letter-scene.active
+.letter-text p.important {
+
+    opacity: 1;
+
+}
+
+
+.letter-text p.big {
+
+    font-size:
+        clamp(
+            35px,
+            6vw,
+            70px
+        );
+
+    line-height: 1;
+
+    opacity: 0;
+
+}
+
+
+.letter-scene.active
+.letter-text p.big {
+
+    opacity: 1;
+
+}
+
+
+/* =========================================
+   SIGNATURE
+========================================= */
+
+.letter-text .signature {
+
+    margin-top: 100px;
+
+    font-size: 25px;
+
+    font-style: italic;
+
+    line-height: 1.5;
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .letter-content {
+
+        width: 88%;
+
+        padding:
+            80px 0 100px;
+
+    }
+
+
+    .letter-text {
+
+        font-size: 20px;
+
+        line-height: 1.55;
+
+    }
+
+
+    .letter-text p {
+
+        margin-bottom: 60px;
+
+    }
+
+}/* =========================================
+   PART 7 — FINAL END CREDITS
+========================================= */
+
+.credits-scene {
+
+    background: #000;
+
+    overflow: hidden;
+
+    text-align: center;
+
+}
+
+
+/* =========================================
+   BACKGROUND
+========================================= */
+
+.credits-background {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,255,255,0.06),
+            transparent 65%
+        );
+
+    opacity: 0;
+
+    transition:
+        opacity 4s ease;
+
+}
+
+
+.credits-scene.active
+.credits-background {
+
+    opacity: 1;
+
+}
+
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.credits-content {
+
+    position: relative;
+
+    z-index: 5;
+
+    width: 90%;
+
+    max-width: 900px;
+
+    text-align: center;
+
+}
+
+
+/* =========================================
+   SMALL TEXT
+========================================= */
+
+.credits-small {
+
+    font-size: 9px;
+
+    letter-spacing: 7px;
+
+    opacity: 0;
+
+    transform:
+        translateY(20px);
+
+    transition:
+        opacity 2s ease,
+        transform 2s ease;
+
+}
+
+
+.credits-scene.active
+.credits-small {
+
+    opacity: 0.45;
+
+    transform:
+        translateY(0);
+
+}
+
+
+/* =========================================
+   LINE
+========================================= */
+
+.credits-line {
+
+    width: 0;
+
+    height: 1px;
+
+    margin: 25px auto;
+
+    background:
+        rgba(255,255,255,0.5);
+
+    transition:
+        width 2s ease 1s;
+
+}
+
+
+.credits-scene.active
+.credits-line {
+
+    width: 70px;
+
+}
+
+
+/* =========================================
+   PRESENTATION TEXT
+========================================= */
+
+.credits-present {
+
+    font-size: 8px;
+
+    letter-spacing: 5px;
+
+    opacity: 0;
+
+    transition:
+        opacity 2s ease;
+
+}
+
+
+.credits-scene.active
+.credits-present {
+
+    opacity: 0.45;
+
+    transition-delay: 2s;
+
+}
+
+
+/* =========================================
+   ANKUR
+========================================= */
+
+.credits-name {
+
+    margin-top: 35px;
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size:
+        clamp(
+            75px,
+            14vw,
+            170px
+        );
+
+    font-weight: 400;
+
+    letter-spacing: 15px;
+
+    line-height: 0.8;
+
+    opacity: 0;
+
+    transform:
+        scale(0.85);
+
+    transition:
+        opacity 3s ease,
+        transform 3s ease;
+
+}
+
+
+.credits-scene.active
+.credits-name {
+
+    opacity: 1;
+
+    transform:
+        scale(1);
+
+    transition-delay: 2.5s;
+
+}
+
+
+/* =========================================
+   ROLE
+========================================= */
+
+.credits-role {
+
+    margin-top: 35px;
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size:
+        clamp(
+            20px,
+            3vw,
+            30px
+        );
+
+    font-style: italic;
+
+    opacity: 0;
+
+    transform:
+        translateY(15px);
+
+    transition:
+        opacity 2s ease,
+        transform 2s ease;
+
+}
+
+
+.credits-scene.active
+.credits-role {
+
+    opacity: 0.75;
+
+    transform:
+        translateY(0);
+
+    transition-delay: 4.5s;
+
+}
+
+
+/* =========================================
+   HUG SYMBOL
+========================================= */
+
+.credits-symbol {
+
+    margin-top: 35px;
+
+    font-size: 28px;
+
+    opacity: 0;
+
+    transform:
+        translateY(10px);
+
+    transition:
+        opacity 2s ease,
+        transform 2s ease;
+
+}
+
+
+.credits-scene.active
+.credits-symbol {
+
+    opacity: 0.75;
+
+    transform:
+        translateY(0);
+
+    transition-delay: 6s;
+
+}
+
+
+/* =========================================
+   THE END
+========================================= */
+
+.credits-final {
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: -170px;
+
+    transform:
+        translateX(-50%);
+
+    font-size: 8px;
+
+    letter-spacing: 6px;
+
+    opacity: 0;
+
+    transition:
+        opacity 3s ease;
+
+}
+
+
+.credits-scene.active
+.credits-final {
+
+    opacity: 0.3;
+
+    transition-delay: 9s;
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .credits-name {
+
+        font-size: 85px;
+
+        letter-spacing: 8px;
+
+    }
+
+
+    .credits-role {
+
+        font-size: 22px;
+
+    }
+
+}
