@@ -2111,4 +2111,22 @@ body {
     padding-bottom: 120px;
 }
 
+}/* =========================================
+   LETTER AUTO SCROLL FIX
+========================================= */
+
+.letter-scene {
+    overflow: hidden !important;
+}
+
+.letter-content {
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.letter-text {
+    max-height: 100%;
+    overflow: hidden;
+    padding-bottom: 120px;
 }
