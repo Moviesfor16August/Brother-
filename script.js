@@ -270,6 +270,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         sceneAudio(number);
 
+        // Ensure the movie container is visible at top (helps when browser scrolled)
+        // If the design uses fixed positioning, this is harmless.
+        try {
+            const movie = document.getElementById('movie');
+            if (movie) movie.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } catch (e) { /* ignore */ }
+
 
         /*
            Automatically move forward
@@ -402,6 +409,16 @@ document.addEventListener("DOMContentLoaded", () => {
                             scroll
                         );
 
+                } else {
+                    // When letter finishes scrolling, move to next scene
+                    letterAnimation = null;
+                    console.log('Letter scroll complete — advancing to next scene');
+                    if (currentScene === 6 && currentScene < scenes.length - 1) {
+                        // small delay to allow voice note to finish UI
+                        setTimeout(() => {
+                            if (currentScene === 6) showScene(currentScene + 1);
+                        }, 300);
+                    }
                 }
 
             }
@@ -434,6 +451,26 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
     }
+
+
+    /* =================================================
+       AUDIO 'ENDED' HANDLERS
+       - Advance the scene when the currently playing audio ends.
+    ================================================= */
+
+    audios.forEach((audio) => {
+        if (!audio) return;
+        audio.addEventListener('ended', () => {
+            console.log('Audio ended event fired');
+            // advance to next scene if movie is still running
+            if (currentScene < scenes.length - 1) {
+                // small timeout to avoid racing with other handlers
+                setTimeout(() => {
+                    if (currentScene < scenes.length - 1) showScene(currentScene + 1);
+                }, 250);
+            }
+        });
+    });
 
 
     /* =================================================
