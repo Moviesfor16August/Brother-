@@ -1,0 +1,1392 @@
+/* =====================================================
+   MILAN — CINEMATIC BIRTHDAY MOVIE
+   STYLE.CSS
+===================================================== */
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: auto;
+}
+
+body {
+    background: #050505;
+    color: #f4f0e8;
+    font-family: "Inter", Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+
+/* =====================================================
+   SELECTION
+===================================================== */
+
+::selection {
+    background: #e8dfcf;
+    color: #080808;
+}
+
+
+/* =====================================================
+   CINEMATIC GRAIN
+===================================================== */
+
+.grain {
+    position: fixed;
+    inset: -50%;
+    width: 200%;
+    height: 200%;
+
+    z-index: 90;
+
+    pointer-events: none;
+
+    opacity: 0.045;
+
+    background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.8'/%3E%3C/svg%3E");
+
+    animation: grainMove 0.25s steps(2) infinite;
+}
+
+@keyframes grainMove {
+
+    0% {
+        transform: translate(0, 0);
+    }
+
+    25% {
+        transform: translate(-2%, 2%);
+    }
+
+    50% {
+        transform: translate(2%, -2%);
+    }
+
+    75% {
+        transform: translate(1%, 2%);
+    }
+
+    100% {
+        transform: translate(-2%, -1%);
+    }
+}
+
+
+/* =====================================================
+   CINEMATIC VIGNETTE
+===================================================== */
+
+.vignette {
+    position: fixed;
+    inset: 0;
+
+    z-index: 80;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at center,
+            transparent 38%,
+            rgba(0, 0, 0, 0.18) 65%,
+            rgba(0, 0, 0, 0.75) 100%
+        );
+}
+
+
+/* =====================================================
+   LOADER
+===================================================== */
+
+#loader {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 200;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    background: #050505;
+
+    transition:
+        opacity 1.4s ease,
+        visibility 1.4s ease;
+}
+
+#loader.hide {
+
+    opacity: 0;
+
+    visibility: hidden;
+}
+
+.loader-content {
+
+    text-align: center;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.loader-line {
+
+    width: 110px;
+
+    height: 1px;
+
+    background: #292929;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.loader-line::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 100%;
+    height: 100%;
+
+    background: #f0ebe2;
+
+    animation: loaderProgress 2s ease forwards;
+}
+
+@keyframes loaderProgress {
+
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 0;
+    }
+}
+
+.loader-content p {
+
+    margin-top: 20px;
+
+    font-size: 11px;
+
+    letter-spacing: 8px;
+
+    color: #eee;
+}
+
+.loader-content span {
+
+    margin-top: 12px;
+
+    font-size: 7px;
+
+    letter-spacing: 4px;
+
+    color: #666;
+}
+
+
+/* =====================================================
+   MAIN MOVIE
+===================================================== */
+
+#movie {
+
+    width: 100%;
+
+    position: relative;
+}
+
+
+/* =====================================================
+   CHAPTER BASE
+===================================================== */
+
+.chapter {
+
+    width: 100%;
+
+    height: 100vh;
+
+    min-height: 650px;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+/* =====================================================
+   TYPOGRAPHY
+===================================================== */
+
+h1,
+h2,
+h3 {
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+    font-weight: 400;
+}
+
+h1 em,
+h2 em {
+
+    font-style: italic;
+}
+
+.eyebrow {
+
+    font-size: 9px;
+
+    letter-spacing: 5px;
+
+    color: #9c978f;
+
+    margin-bottom: 25px;
+
+    font-weight: 400;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    background: #050505;
+}
+
+
+/* Background */
+
+.hero-bg {
+
+    position: absolute;
+
+    inset: -8%;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 45%,
+            #29241d 0%,
+            #15120f 25%,
+            #090807 55%,
+            #030303 100%
+        );
+
+    animation:
+        heroZoom 12s
+        ease-in-out infinite
+        alternate;
+}
+
+@keyframes heroZoom {
+
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.08);
+    }
+}
+
+
+/* Hero light */
+
+.hero-bg::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 40%,
+            rgba(255, 236, 200, 0.07),
+            transparent 40%
+        );
+}
+
+
+/* Hero content */
+
+.hero-content {
+
+    position: relative;
+
+    z-index: 5;
+
+    max-width: 1000px;
+
+    padding: 30px;
+}
+
+.hero-content h1 {
+
+    font-size:
+        clamp(
+            75px,
+            15vw,
+            180px
+        );
+
+    line-height: 0.78;
+
+    letter-spacing: -4px;
+
+    color: #f3efe8;
+}
+
+.hero-sub {
+
+    margin-top: 38px;
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(18px, 2.3vw, 25px);
+
+    line-height: 1.45;
+
+    color: #aaa49b;
+
+    font-weight: 400;
+}
+
+
+/* Hero bottom */
+
+.hero-content small {
+
+    display: block;
+
+    margin-top: 28px;
+
+    font-size: 8px;
+
+    letter-spacing: 4px;
+
+    color: #67635d;
+}
+
+
+/* =====================================================
+   SCROLL LINE
+===================================================== */
+
+.scroll-line {
+
+    width: 1px;
+
+    height: 65px;
+
+    background: #292929;
+
+    margin: 40px auto 0;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.scroll-line span {
+
+    position: absolute;
+
+    left: 0;
+
+    top: -30px;
+
+    width: 1px;
+
+    height: 30px;
+
+    background: #eee;
+
+    animation:
+        scrollIndicator 2.2s
+        ease-in-out infinite;
+}
+
+@keyframes scrollIndicator {
+
+    0% {
+        top: -30px;
+    }
+
+    100% {
+        top: 65px;
+    }
+}
+
+
+/* =====================================================
+   DARK CHAPTER
+===================================================== */
+
+.dark {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 10vw;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 50%,
+            #171512,
+            #090908 55%,
+            #030303 100%
+        );
+}
+
+
+/* subtle light */
+
+.dark::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+
+    height: 500px;
+
+    border-radius: 50%;
+
+    background: rgba(180, 160, 120, 0.035);
+
+    filter: blur(100px);
+}
+
+
+/* Chapter number */
+
+.chapter-number {
+
+    position: absolute;
+
+    top: 10%;
+
+    left: 8%;
+
+    font-size: 9px;
+
+    letter-spacing: 5px;
+
+    color: #4d4a45;
+}
+
+
+/* Chapter copy */
+
+.chapter-copy {
+
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 900px;
+}
+
+.chapter-copy h2 {
+
+    font-size:
+        clamp(
+            55px,
+            8.5vw,
+            115px
+        );
+
+    line-height: 0.86;
+
+    letter-spacing: -2px;
+
+    color: #f0ece5;
+}
+
+.body-copy {
+
+    max-width: 570px;
+
+    margin: 38px auto 0;
+
+    font-size: 14px;
+
+    line-height: 1.9;
+
+    color: #88847e;
+
+    font-weight: 300;
+}
+
+
+/* =====================================================
+   PHOTO SCENES
+===================================================== */
+
+.photo-scene {
+
+    background: #030303;
+}
+
+
+/* Image */
+
+.photo-scene img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    filter:
+        grayscale(12%)
+        saturate(0.78)
+        contrast(1.08)
+        brightness(0.78);
+
+    transform: scale(1.05);
+
+    animation:
+        cinematicImage 14s
+        ease-in-out
+        infinite alternate;
+}
+
+@keyframes cinematicImage {
+
+    from {
+        transform: scale(1.05);
+    }
+
+    to {
+        transform: scale(1.12);
+    }
+}
+
+
+/* Photo overlay */
+
+.photo-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.2),
+            transparent 35%,
+            rgba(0,0,0,0.75) 100%
+        );
+
+    z-index: 2;
+}
+
+
+/* Side cinematic shadow */
+
+.photo-scene::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 3;
+
+    pointer-events: none;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,0.45),
+            transparent 35%,
+            transparent 65%,
+            rgba(0,0,0,0.25)
+        );
+}
+
+
+/* =====================================================
+   PHOTO CAPTION
+===================================================== */
+
+.photo-caption {
+
+    position: absolute;
+
+    left: 8%;
+
+    bottom: 10%;
+
+    z-index: 5;
+
+    max-width: 700px;
+}
+
+.photo-caption.right {
+
+    left: auto;
+
+    right: 8%;
+
+    text-align: right;
+}
+
+.photo-caption span {
+
+    font-size: 8px;
+
+    letter-spacing: 5px;
+
+    color: #bbb4a9;
+}
+
+.photo-caption h2 {
+
+    margin-top: 14px;
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(
+            45px,
+            7vw,
+            100px
+        );
+
+    line-height: 0.85;
+
+    letter-spacing: -1px;
+
+    color: #f2eee7;
+}
+
+
+/* =====================================================
+   LETTER CHAPTER
+===================================================== */
+
+.letter {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 40%,
+            #211d17,
+            #0a0908 60%,
+            #030303 100%
+        );
+}
+
+.letter-inner {
+
+    width: 100%;
+
+    max-width: 760px;
+
+    padding: 10vw;
+
+    position: relative;
+}
+
+
+/* Decorative line */
+
+.letter-inner::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    top: 0;
+
+    width: 1px;
+
+    height: 100px;
+
+    background: #746b5c;
+}
+
+.letter h2 {
+
+    font-size:
+        clamp(
+            70px,
+            10vw,
+            110px
+        );
+
+    line-height: 0.8;
+
+    margin-bottom: 35px;
+
+    color: #eee9df;
+}
+
+.letter p:not(.eyebrow) {
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(
+            18px,
+            2.1vw,
+            24px
+        );
+
+    line-height: 1.55;
+
+    color: #aaa49a;
+
+    margin: 18px 0;
+}
+
+.letter strong {
+
+    color: #eee9df;
+
+    font-weight: 500;
+}
+
+
+/* =====================================================
+   VIDEO
+===================================================== */
+
+.video-scene {
+
+    background: #000;
+}
+
+
+/* Video */
+
+.video-scene video {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    filter:
+        saturate(0.82)
+        contrast(1.1)
+        brightness(0.72);
+}
+
+
+/* Video overlay */
+
+.video-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 2;
+
+    background:
+
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.2),
+            transparent 35%,
+            rgba(0,0,0,0.75)
+        );
+}
+
+
+/* Video title */
+
+.video-title {
+
+    position: absolute;
+
+    left: 8%;
+
+    bottom: 12%;
+
+    z-index: 5;
+}
+
+.video-title h2 {
+
+    font-size:
+        clamp(
+            65px,
+            9vw,
+            130px
+        );
+
+    line-height: 0.8;
+
+    color: #f4efe6;
+}
+
+
+/* =====================================================
+   FINALE
+===================================================== */
+
+.finale {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            #211d17 0%,
+            #0b0a08 38%,
+            #030303 75%
+        );
+}
+
+
+/* Golden glow */
+
+.finale::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+
+    height: 500px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(188, 161, 112, 0.045);
+
+    filter: blur(120px);
+}
+
+
+/* Finale content */
+
+.finale-content {
+
+    position: relative;
+
+    z-index: 5;
+
+    max-width: 900px;
+
+    padding: 30px;
+}
+
+.finale h2 {
+
+    font-size:
+        clamp(
+            75px,
+            13vw,
+            155px
+        );
+
+    line-height: 0.76;
+
+    letter-spacing: -3px;
+}
+
+
+/* Gold divider */
+
+.gold-line {
+
+    width: 85px;
+
+    height: 1px;
+
+    background: #85765f;
+
+    margin: 48px auto;
+}
+
+
+/* Final message */
+
+.final-message {
+
+    max-width: 570px;
+
+    margin: auto;
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(
+            18px,
+            2.1vw,
+            24px
+        );
+
+    line-height: 1.55;
+
+    color: #aaa39a;
+}
+
+
+/* Signature */
+
+.signature {
+
+    margin-top: 30px;
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+    font-size: 25px;
+
+    font-style: italic;
+
+    color: #ded7cc;
+}
+
+
+/* =====================================================
+   END CREDITS
+===================================================== */
+
+.credits {
+
+    height: 45vh;
+
+    min-height: 320px;
+
+    background: #020202;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 30px;
+}
+
+.credits p {
+
+    font-size: 7px;
+
+    letter-spacing: 4px;
+
+    color: #4d4a45;
+
+    max-width: 500px;
+
+    line-height: 2;
+}
+
+.credits h3 {
+
+    font-size:
+        clamp(
+            60px,
+            10vw,
+            100px
+        );
+
+    margin: 15px 0;
+
+    color: #eee9df;
+}
+
+.credits span {
+
+    font-size: 8px;
+
+    letter-spacing: 4px;
+
+    color: #66615a;
+}
+
+
+/* =====================================================
+   MOVIE HUD
+===================================================== */
+
+.hud {
+
+    position: fixed;
+
+    left: 50%;
+
+    bottom: 24px;
+
+    transform: translateX(-50%);
+
+    z-index: 100;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    pointer-events: none;
+
+    opacity: 0.65;
+}
+
+.hud span {
+
+    font-size: 7px;
+
+    letter-spacing: 3px;
+
+    color: #aaa;
+}
+
+.progress {
+
+    width: 90px;
+
+    height: 1px;
+
+    background: #333;
+}
+
+.progress i {
+
+    display: block;
+
+    width: 0%;
+
+    height: 100%;
+
+    background: #eee;
+
+    transition: width 0.1s linear;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+
+    .chapter {
+
+        min-height: 100svh;
+
+    }
+
+
+    .hero-content {
+
+        padding: 25px;
+
+    }
+
+
+    .hero-content h1 {
+
+        font-size:
+            clamp(
+                70px,
+                22vw,
+                120px
+            );
+
+        letter-spacing: -3px;
+
+    }
+
+
+    .hero-sub {
+
+        font-size: 19px;
+
+    }
+
+
+    .chapter-copy {
+
+        padding: 30px;
+
+    }
+
+
+    .chapter-copy h2 {
+
+        font-size:
+            clamp(
+                52px,
+                14vw,
+                85px
+            );
+
+    }
+
+
+    .body-copy {
+
+        font-size: 13px;
+
+        line-height: 1.8;
+
+    }
+
+
+    .chapter-number {
+
+        left: 7%;
+
+        top: 8%;
+
+    }
+
+
+    .photo-caption {
+
+        left: 7%;
+
+        bottom: 11%;
+
+        max-width: 85%;
+
+    }
+
+
+    .photo-caption.right {
+
+        right: 7%;
+
+    }
+
+
+    .photo-caption h2 {
+
+        font-size:
+            clamp(
+                45px,
+                13vw,
+                75px
+            );
+
+    }
+
+
+    .letter-inner {
+
+        padding:
+            20vw
+            9vw
+            12vw;
+
+    }
+
+
+    .letter h2 {
+
+        font-size: 75px;
+
+    }
+
+
+    .letter p:not(.eyebrow) {
+
+        font-size: 19px;
+
+    }
+
+
+    .video-title {
+
+        left: 7%;
+
+        bottom: 12%;
+
+    }
+
+
+    .video-title h2 {
+
+        font-size:
+            clamp(
+                65px,
+                17vw,
+                100px
+            );
+
+    }
+
+
+    .finale h2 {
+
+        font-size:
+            clamp(
+                70px,
+                19vw,
+                110px
+            );
+
+    }
+
+
+    .final-message {
+
+        font-size: 19px;
+
+    }
+
+
+    .hud {
+
+        bottom: 15px;
+
+    }
+
+
+    .progress {
+
+        width: 65px;
+
+    }
+
+}
+
+
+/* =====================================================
+   SMALL PHONES
+===================================================== */
+
+@media (max-width: 380px) {
+
+    .eyebrow {
+
+        font-size: 7px;
+
+        letter-spacing: 3px;
+
+    }
+
+
+    .hero-sub {
+
+        font-size: 17px;
+
+    }
+
+
+    .letter p:not(.eyebrow) {
+
+        font-size: 18px;
+
+    }
+
+
+    .hud {
+
+        gap: 9px;
+
+    }
+
+
+    .hud span {
+
+        font-size: 6px;
+
+        letter-spacing: 2px;
+
+    }
+
+}
